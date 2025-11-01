@@ -72,11 +72,16 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient)
         
         receipt = burger.get_receipt()
+
+        expected_receipt = "\n".join([
+        "(==== black bun ====)",
+        "= sauce hot sauce =", 
+        "(==== black bun ====)",
+        "",
+        "Price: 250"
+    ])
         
-        assert "black bun" in receipt
-        assert "sauce hot sauce" in receipt
-        assert "Price:" in receipt
-        assert "250" in receipt  # (100*2)+50 = 250
+        assert receipt == expected_receipt
 
     @pytest.mark.parametrize("bun_price,ingredient_prices,expected_total", [
         (100, [], 200),           # Только булочки
